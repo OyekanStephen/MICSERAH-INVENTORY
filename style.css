@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    font-family: 'Avent', sans-serif;   
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #A6A6A6;
+    
+}
+.popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+
+
+#generateInvoice{
+    background-color: white;
+    border: none;
+    color: #0A730B;
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+
+  #generateInvoice:hover{
+    background-color: wheat;
+    transition: .2s ease;
+  }
+
+#printButton{
+    background-color: #0A730B;
+    border: none;
+    color: white;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+#printButton:hover{
+    background-color: wheat;
+    transition: .2s ease;
+}
+
+  .popup-content {
+    background-color: #fff;
+    width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: block;
+  }
+  
+  .popup-content button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 999999;
+    margin: 1rem;
+  }
+  
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header h1 {
+    color: white;
+    font-family: 'Agbalumo', system-ui;
+
+}
+
+.header img {
+    margin-right: 9rem;
+    max-width: 150px;
+    height: auto;
+    
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10rem;
+    height: 100%;
+    padding: 0px;
+    overflow-x: hidden;
+
+}
+
+.invoice-cover{
+    width: 1080px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding-bottom: 5rem;
+    overflow-x: hidden;
+}
+
+.add-product{
+    display: flex;
+    align-items: center;
+    color: white;
+    max-height: 20rem;
+    background-color: #0A730B;
+    padding: 5rem;
+    margin: .3rem;
+    border-radius: 10px;
+    max-width: 28rem;
+}
+
+.added-product {
+    background-color: #0A730B;
+    border: 1px solid;
+    padding: .2rem;
+    margin: .3rem;
+    color: white;
+}
+
+.searchInput::placeholder{
+    color: white;
+    font-size: .7rem;
+}
+
+.searchInput{
+    width: 10rem; 
+    height: 2rem; 
+    border: .2rem solid rgb(159, 152, 152); 
+    background-color: transparent; 
+    border-radius: 5px;
+    color: white;
+    font-size: .7rem;
+    margin: .5rem;
+    margin-right: 5rem;
+}
+.searchInput:hover{
+    transition: .5s all ease;
+    color:green;
+    background-color: white;
+}
+.searchInput:hover::placeholder{
+color:green;
+    
+}
+
+#productName{
+    width: 280px;
+    height: 3rem;
+    border-radius: 10px;
+    text-align: center;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+#productName:hover{
+    transition: .5s all ease;
+    color:green;
+    background-color: white;
+}
+
+#productPrice{
+    width: 10rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+    border: .15rem solid white;
+    border-radius: .4rem;
+    margin-left: 8rem;
+}
+.nariaSign{
+    position: relative;
+    left: 15rem;
+    top: 3.3rem;
+}
+
+#modalContent{ 
+    padding: 2rem;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header h5{
+    margin-left: 9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.product-table{
+    border: 1px solid black;
+}
+
+
+#tablescontent{
+    border: 1px solid black;
+}
+#tablescontent th{
+    border: 1px solid black;
+}
+
+td{
+    border: 1px solid black;
+}
+
+#productQuantity{
+    position: relative;
+    bottom: 50px;
+    width: 6rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+    border: .15rem solid white;
+    border-radius: .4rem;
+    margin-right: 8rem;
+}
+#productQuantity::placeholder{
+    color: white;
+    font-size: 1rem;
+}
+
+.btn-add-products{
+    position: relative;
+    bottom: 2rem;
+    width: 18rem;
+    margin-top: 0;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #0A730B;
+    background-color: white;
+    border-radius: .4rem;
+    margin-right: 8rem;
+}
+
+.product-table {
+    min-height: 400px;
+}
+
+th{
+    border: 1px solid black;
+    padding: .1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.table-footer {
+    margin-left: 3px;
+    border-top: 1px solid;
+    padding-top: 10px;
+}
+
+/* #googleSheet input{
+visibility: hidden;
+position: absolute;
+} */
+
+/* Larger than standard 1200px */
+
+
+  /* Extra small devices (portrait phones, up to 576px) */
+  @media (max-width: 575.98px) {
+    *{
+        font-size: 97%;
+    }
+   
+    .header h1 {
+        font-size: 1rem;
+        margin-left: 2rem;
+        font-weight: bold;
+    }   
+
+    .header img {
+        max-width: 70px;
+    }
+    .invoice-cover{
+        width: 320px;
+        align-items: center;
+        justify-content: center;
+    }
+    .add-product{
+        padding: 1rem;
+        margin: .3rem;
+        max-width: 20rem;
+    }
+    
+    .added-product {
+        max-width: 20rem;
+        padding: 1rem;
+    }
+       
+    .product-table {
+        min-height: 400px;
+        font-size: 90%;
+        margin: 0;
+    }
+    th{
+        border: 1px solid black;
+        padding: .1rem;
+        padding-left: .3rem;
+        padding-right: .3rem;
+    }
+
+    
+      
+}
+    
