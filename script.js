@@ -91,12 +91,22 @@ function addProductToTable() {
     const productQuantity = document.getElementById('productQuantity').value;
     const productPrice = document.getElementById('productPrice').value;
     const InvoiceCode = document.getElementById('InvoiceCode').value;
+    const TimeStamp = document.getElementById('timeStamp').value;
     
 
     if (productName && productPrice) {
         const sendToSheet = document.getElementById('mainSheetName');
         const tableBody = document.getElementById('productTableBody');
         const newRow = document.createElement('tr');
+
+        const timeStamp = document.createElement('input');
+        timeStamp.value = ` ${TimeStamp}`;
+        timeStamp.className= "TimeStamp";
+        timeStamp.name= "TimeStamp";
+        timeStamp.type = "text";
+        timeStamp.readOnly ="true";
+        tableBody.appendChild(newRow);
+        sendToSheet.appendChild(timeStamp);
 
         const newProduct = document.createElement('input');
         newProduct.value = ` ${productName}`;
@@ -142,6 +152,7 @@ function addProductToTable() {
         document.getElementById('productQuantity').value = '';
         document.getElementById('productPrice').value = '';
         document.getElementById('InvoiceCode').value = '';
+        document.getElementById('timeStamp').value = '';
 
 
         const deleteButton = newRow.querySelector('.delete-btn');
@@ -255,3 +266,24 @@ function sendData(e) {
 document.getElementById("mainSheetName").addEventListener("submit", function (e) {
     sendData(e);
 });
+
+
+function setDateTime() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var yyyy = today.getFullYear();
+    var formattedDate = yyyy + '-' + mm + '-' + dd;
+    
+    // Time
+    var hh = String(today.getHours()).padStart(2, '0');
+    var min = String(today.getMinutes()).padStart(2, '0');
+    var formattedTime = hh + ':' + min;
+  
+    // Combine date and time
+    var combinedDateTime = min + '/' + hh + '/' + dd + '/' + mm + '/' + yyyy;
+  
+    // Set the value of the combined input field
+    document.getElementById('timeStamp').value = combinedDateTime;
+  }
+  window.onload = setDateTime;
