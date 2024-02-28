@@ -57,22 +57,6 @@ function updatePrice() {
         updateStockMessage(selectedProductData.instock); // Call updateStockMessage with instock value
     }
 }
-
-
-// Function to update the stock message based on the instock property
-function updateStockMessage(instock) {
-    const stockMessage = document.getElementById('stockMessage');
-    const borderColor = document.getElementById('invoiceCover');
-    if (instock=="false") { // Checks if instock is false
-        stockMessage.style.display = 'block';
-        borderColor.style.border = '1px solid red'
-    } else {
-        stockMessage.style.display = 'none';
-        borderColor.style.border = '0px solid black'
-    }
-}
-
-
 fetchData();
 
 
@@ -88,11 +72,8 @@ dropdown.parentNode.insertBefore(searchInput, dropdown);
 
 function filterProducts() {
   const searchTerm = searchInput.value.toLowerCase();
-  
-  // Filter data and exclude products with null name
-  const filteredData = data.filter(product => product.name && product.name.toLowerCase().includes(searchTerm));
-
-  dropdown.innerHTML = ""; // Clear existing options
+    const filteredData = data.filter(product => product.name && product.name.toLowerCase().includes(searchTerm));
+    dropdown.innerHTML = "";
 
   filteredData.forEach(product => {
     const optionElement = document.createElement('option');
@@ -109,6 +90,7 @@ function addProductToTable() {
     const productName = document.getElementById('productName').value;
     const productQuantity = document.getElementById('productQuantity').value;
     const productPrice = document.getElementById('productPrice').value;
+    const InvoiceCode = document.getElementById('InvoiceCode').value;
     
 
     if (productName && productPrice) {
@@ -133,11 +115,20 @@ function addProductToTable() {
         tableBody.appendChild(newRow);
         sendToSheet.appendChild(newQuantity);
 
+        const newCode = document.createElement('input');
+        newCode.className = "InvoiceCode";
+        newCode.name = "InvoiceCode";
+        newCode.readOnly = "true";
+        newCode.value = ` ${InvoiceCode}`;
+        tableBody.appendChild(newRow);
+        sendToSheet.appendChild(newCode);
+
         newRow.innerHTML = `
             <th scope="row">${tableBody.children.length + 1}</th>
             <td>${productName}</td>
             <td>${productQuantity}</td>
             <td>${productPrice*productQuantity}</td>
+            <td>${InvoiceCode}</td>
 
             <td>
                 <button type="button" class="btn btn-danger delete-btn"><i class="fa-solid fa-trash"></i></button>
@@ -150,6 +141,8 @@ function addProductToTable() {
         document.getElementById('productName').value = '';
         document.getElementById('productQuantity').value = '';
         document.getElementById('productPrice').value = '';
+        document.getElementById('InvoiceCode').value = '';
+
 
         const deleteButton = newRow.querySelector('.delete-btn');
         deleteButton.addEventListener('click', function () {
@@ -180,12 +173,14 @@ document.getElementById('generateInvoice').addEventListener('click', function ()
         const productName = row.getElementsByTagName('td')[0].textContent;
         const productQuantity = row.getElementsByTagName('td')[1].textContent;
         const productPrice = row.getElementsByTagName('td')[2].textContent;
+        const invoiceCode = row.getElementsByTagName('td')[3].textContent;
 
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
             <td>${productName}</td>
             <td>${productQuantity}</td>
             <td>${productPrice}</td>
+            <td>${invoiceCode}</td>
         `;
         invoiceTableBody.appendChild(newRow);
     }

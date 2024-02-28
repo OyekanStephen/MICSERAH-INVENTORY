@@ -156,7 +156,12 @@ body {
 }
 .searchInput:hover::placeholder{
 color:green;
-    
+}
+#InvoiceCode{
+    width: 6rem;
+    border: 1px solid white;
+
+
 }
 
 #productName{

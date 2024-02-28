@@ -25,10 +25,11 @@
 
                     <div class="add-product" id="invoiceCover">
                         <form id="productForm" class="productForm">
-                        <select id="productName" onchange="updatePrice()" required></select>
+                            <input id="InvoiceCode" placeholder="Invoice Code" required>
+                            <select id="productName" onchange="updatePrice()" required></select>
                             <input id="productPrice" readonly>
                             <input type="number" id="productQuantity" required placeholder="1pcs" value="1" min="1">
-                            <input id="InvoiceCode" placeholder="Ivoice code">
+                            
                             <button type="submit" class="btn-add-products">ADD PRODUCT</button>
                         </form>
                     </div>
@@ -44,6 +45,7 @@
                                     <th scope="col">Product Name</th>
                                     <th scope="col">quantity</th>
                                     <th scope="col">Amount</th>
+                                    <th scope="col">Invoice Code</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>    
@@ -90,6 +92,7 @@
                                     <th scope="col">Product Name</th>
                                     <th scope="col">productQuantity</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Code</th>
                                     </tr>
                                 </thead>
                                 <tbody id="invoiceTableBody">
