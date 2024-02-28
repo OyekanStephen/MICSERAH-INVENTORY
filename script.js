@@ -203,37 +203,6 @@ document.getElementById('generateInvoice').addEventListener('click', function ()
 // confirming invoice
 
 
-// download pdf invoice
-function printInvoice() {
-    const invoiceContent = document.querySelector('.invoice-header').innerHTML;
-    const totalAmount = document.getElementsByClassName('modal-body')[0].innerHTML;
-    const pdfContent = `
-        <div style="padding: 1rem; border: 1px solid black">
-                ${invoiceContent}<br>
-                ${totalAmount}
-        </div>
-    `;
-
-    const options = {
-        margin: 0,
-        padding: 0,
-        filename: 'micserahsales.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 4 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, 
-        // Adjust this line for custom size and orientation
-    };
-
-    // Call html2pdf inside the printInvoice function
-    html2pdf().from(pdfContent).set(options).save();
-
-    // Return the pdfContent if needed for further processing
-    return pdfContent;
-}
-document.getElementById('submitSave').addEventListener('click', function () {printInvoice();});
-// download pdf invoice
-
-
 
 // data submit
 function sendData(e) {
@@ -287,4 +256,37 @@ function setDateTime() {
   }
   window.onload = setDateTime;
 
-  
+
+// download pdf invoice
+function printInvoice() {
+    const invoiceContent = document.querySelector('.invoice-header').innerHTML;
+    const totalAmount = document.getElementsByClassName('modal-body')[0].innerHTML;
+    const pdfContent = `
+        <div style="padding: 1rem; border: 1px solid black">
+                ${invoiceContent}<br>
+                ${totalAmount}
+        </div>
+    `;
+
+    const options = {
+        margin: 0,
+        padding: 0,
+        filename: 'micserahsales.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 4 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, 
+        // Adjust this line for custom size and orientation
+    };
+
+    // Call html2pdf inside the printInvoice function
+    html2pdf().from(pdfContent).set(options).save();
+
+    // Return the pdfContent if needed for further processing
+    return pdfContent;
+}
+document.getElementById('submitSave').addEventListener('click', function () {
+    printInvoice();
+    // alert("submit successfully");
+    // location.reload();
+});
+// download pdf invoice
