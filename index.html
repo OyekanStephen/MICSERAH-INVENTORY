@@ -26,8 +26,9 @@
                     <div class="add-product" id="invoiceCover">
                         <form id="productForm" class="productForm">
                         <select id="productName" onchange="updatePrice()" required></select>
-                        <input id="productPrice" readonly>
+                            <input id="productPrice" readonly>
                             <input type="number" id="productQuantity" required placeholder="1pcs" value="1" min="1">
+                            <input id="InvoiceCode" placeholder="Ivoice code">
                             <button type="submit" class="btn-add-products">ADD PRODUCT</button>
                         </form>
                     </div>
@@ -98,20 +99,11 @@
                         </div>
                         <p class="totalAmount" style="align-items: center; justify-content: center;" id="invoic-total-amount">Total: ₦<span id="invoiceTotal">0.00</span></p>
                     </div>
-
-                    
-
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">edit</button>
-                    <form id="googleSheet">
-                        <input id="ProductName" name="ProductName">
-                        <input id="ProductQuantity" name="ProductQuantity">
-                        <input id="ProductPrice" name="ProductPrice">
                         <button type="submit" id="submitSave" class="btn btn-dark">submt and download pdf</button>
-                    </form>
-
                     <form id="mainSheetName">
                         <button type="submit">submit</button>
                     </form>
@@ -119,7 +111,7 @@
         </div>
 
     </div>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>

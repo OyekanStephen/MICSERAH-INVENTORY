@@ -112,12 +112,26 @@ function addProductToTable() {
     
 
     if (productName && productPrice) {
+        const sendToSheet = document.getElementById('mainSheetName');
         const tableBody = document.getElementById('productTableBody');
         const newRow = document.createElement('tr');
 
-        const sendToSheet = document.getElementById('mainSheetName');
         const newProduct = document.createElement('input');
+        newProduct.value = ` ${productName}`;
+        newProduct.className= "ProductName";
         newProduct.name= "ProductName";
+        newProduct.type = "text";
+        newProduct.readOnly ="true";
+        tableBody.appendChild(newRow);
+        sendToSheet.appendChild(newProduct);
+
+        const newQuantity = document.createElement('input');
+        newQuantity.className = "ProductQuantity";
+        newQuantity.name = "ProductQuantity";
+        newQuantity.readOnly = "true";
+        newQuantity.value = ` ${productQuantity}`;
+        tableBody.appendChild(newRow);
+        sendToSheet.appendChild(newQuantity);
 
         newRow.innerHTML = `
             <th scope="row">${tableBody.children.length + 1}</th>
@@ -129,12 +143,9 @@ function addProductToTable() {
                 <button type="button" class="btn btn-danger delete-btn"><i class="fa-solid fa-trash"></i></button>
             </td>
         `;
-        newProduct.value = `
-            ${productName}
-        `;
+        
 
-        tableBody.appendChild(newRow);
-        sendToSheet.appendChild(newProduct);
+       
 
         document.getElementById('productName').value = '';
         document.getElementById('productQuantity').value = '';
@@ -177,10 +188,6 @@ document.getElementById('generateInvoice').addEventListener('click', function ()
             <td>${productPrice}</td>
         `;
         invoiceTableBody.appendChild(newRow);
-
-        document.getElementById("ProductName").value= productName;
-        document.getElementById("ProductQuantity").value= productQuantity;
-        document.getElementById("ProductPrice").value= productPrice;
     }
 
     document.getElementById('invoiceTotal').textContent = totalAmount;
@@ -196,7 +203,7 @@ function printInvoice() {
     const totalAmount = document.getElementsByClassName('modal-body')[0].innerHTML;
     const pdfContent = `
         <div style="padding: 1rem; border: 1px solid black">
-                ${invoiceContent}
+                ${invoiceContent}<br>
                 ${totalAmount}
         </div>
     `;
@@ -226,14 +233,17 @@ document.getElementById('submitSave').addEventListener('click', function () {pri
 // data submit
 function sendData(e) {
     e.preventDefault();
-    // Collect the form data
-    var formData = new FormData(document.getElementById("googleSheet"));
+    var formData = new FormData(document.getElementById("mainSheetName"));
     var keyValuePairs = [];
+
     for (var pair of formData.entries()) {
-        keyValuePairs.push(pair[0] + "=" + pair[1]);
+        var element = document.querySelector('.' + pair[0]); // Select elements by class name
+        var className = element ? element.classList[0] : ''; // Get the class name if found
+        keyValuePairs.push(className + "=" + pair[1]);
     }
+
     var formDataString = keyValuePairs.join("&");
-    // Send a POST request to your Google Apps Script
+
     fetch(
         "https://script.google.com/macros/s/AKfycby7IwOQKfkT8KKBobgujiS8tFvZEKu6xtT8fAI0KdPBJw3Mnk8KA1ZkSrxEerCLXv7J/exec",
         {
@@ -247,9 +257,6 @@ function sendData(e) {
     );
 }
 
-document.getElementById("googleSheet").addEventListener("submit", function (e) {
-    sendData(e);
-});
 document.getElementById("mainSheetName").addEventListener("submit", function (e) {
     sendData(e);
 });
