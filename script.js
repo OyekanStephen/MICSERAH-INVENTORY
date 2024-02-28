@@ -100,7 +100,7 @@ function addProductToTable() {
         const newRow = document.createElement('tr');
 
         const timeStamp = document.createElement('input');
-        timeStamp.value = ` ${TimeStamp}`;
+        timeStamp.value = `${TimeStamp}`;
         timeStamp.className= "TimeStamp";
         timeStamp.name= "TimeStamp";
         timeStamp.type = "text";
@@ -235,7 +235,6 @@ document.getElementById('submitSave').addEventListener('click', function () {pri
 
 
 
-
 // data submit
 function sendData(e) {
     e.preventDefault();
@@ -287,3 +286,5 @@ function setDateTime() {
     document.getElementById('timeStamp').value = combinedDateTime;
   }
   window.onload = setDateTime;
+
+  

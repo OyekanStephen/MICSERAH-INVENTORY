@@ -246,6 +246,11 @@ td{
     font-size: 1rem;
 }
 
+#mainSheetName input{
+    position: absolute;
+    visibility: hidden;
+}
+
 .btn-add-products{
     position: relative;
     bottom: 2rem;
